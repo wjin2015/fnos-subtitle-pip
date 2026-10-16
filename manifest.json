@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "FNOS Subtitle PiP",
+  "version": "0.5.1",
+  "description": "飞牛影音专用字幕画中画：Document PiP 与视频画中画（Canvas 字幕合成）双模式，支持快捷键 Alt+P 触发、字幕大小调节、播放控制（暂停/播放/快进/快退）、剧集切换（上一集/下一集/选集）与连播时画中画自动跟随。",
+  "permissions": ["storage"],
+  "host_permissions": [],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "toggle-subtitle-pip": {
+      "suggested_key": {
+        "default": "Alt+P"
+      },
+      "description": "开启/关闭飞牛字幕画中画"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "字幕画中画（Alt+P 开启/关闭）"
+  }
+}
